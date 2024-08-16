@@ -1,0 +1,16 @@
+1. Decide on business requirements
+
+Flavours (hashmap/dict) + Quantity (number of pints)
+
+Later iteration (add filters e.g. GLuten Free, Seasonal, Vegan)
+
+2. create basic angular app according to documentation
+3. use reactive forms documentation
+4. (optional) use stackblitz to copy template code
+
+
+Full Name [         ]
+Phone Number [        ]
+Chocolate - [] +
+Vanilla - [] +
+Banana - [] +
