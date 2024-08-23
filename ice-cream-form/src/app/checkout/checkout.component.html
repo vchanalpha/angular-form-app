@@ -1,7 +1,25 @@
+<div class="status">Form status: {{ checkoutForm.status }}</div>
 <form [formGroup]="checkoutForm">
-  <label for="first-name">First Name: </label>
-  <input id="first-name" type="text" formControlName="firstName" />
-  <br />
-  <label for="last-name">Last Name: </label>
-  <input id="last-name" type="text" formControlName="lastName" />
+  <fieldset>
+    <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" formControlName="firstName" />
+  </fieldset>
+  <fieldset>
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" formControlName="lastName" />
+  </fieldset>
+  <fieldset *ngFor="let item of iceCream">
+    <label>{{ item.flavour }}</label>
+    <br />
+    <label [for]="item.feature">Quantity:</label>
+    <input
+      type="number"
+      [id]="item.feature"
+      [formControlName]="item.flavour"
+      min="0"
+      placeholder="0"
+    />
+  </fieldset>
+
+  <button type="submit">Checkout</button>
 </form>

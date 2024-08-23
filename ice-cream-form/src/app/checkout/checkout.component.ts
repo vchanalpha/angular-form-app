@@ -1,6 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 interface CheckoutForm {
   [key: string]: FormControl<string | number | null>;
 }
@@ -8,13 +13,13 @@ interface CheckoutForm {
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.less',
 })
 export class CheckoutComponent implements OnInit {
   checkoutForm = new FormGroup<CheckoutForm>({
-    firstName: new FormControl(''),
+    firstName: new FormControl('', Validators.required),
     lastName: new FormControl(''),
   });
   public firstName: string = '';
@@ -58,7 +63,14 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     this.iceCream.forEach(({ flavour }) => {
-      this.checkoutForm.addControl(flavour, new FormControl(''));
+      this.checkoutForm.addControl(
+        flavour,
+        new FormControl('', [Validators.max(12), Validators.min(0)])
+      );
     });
+  }
+
+  ngOnChanges() {
+    console.log('error', this.checkoutForm.errors);
   }
 }
